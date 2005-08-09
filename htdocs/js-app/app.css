@@ -1,0 +1,70 @@
+body {
+   font-family: Verdana,Arial,sans-serif;
+   font-weight: 10pt;
+   color: navy;
+}
+td {
+   font: 10pt Verdana,sans-serif;
+   color: navy;
+}
+.branch {
+   cursor: pointer;
+   cursor: hand;
+   display: block;
+}
+.leaf {
+   display: none;
+   margin-left: 16px;
+}
+a {
+   text-decoration: none;
+}
+a:hover {
+   text-decoration: underline;
+}
+
+/* button1: a minimal button, simply text with an <a> anchor */
+.button1 {
+   padding: 1px;
+   font-size: .8em;
+   font-weight: bold;
+   background-color: #cccccc;
+   color: #000000;
+   text-decoration: none;
+}
+a:hover.button1 {
+   color: #000099;
+   background-color: #aaaaaa;
+   text-decoration: none;
+}
+a:active.button1 {
+   color: #660066;
+   background-color: #888888;
+   text-decoration: none;
+}
+
+/* button2: <input type="submit"> */
+.button2 {
+   font-size: .8em;
+   font-weight: bold;
+}
+
+/* button3: <a> inside a <td> */
+.button3 {
+   border: 2px outset #cccccc;
+   padding: 3px;
+   font-size: .8em;
+   font-weight: bold;
+   background-color: #cccccc;
+}
+a.button3a {
+   text-decoration: none;
+   font-color: #000000;
+}
+a:hover.button3a {
+   font-color: #000099;
+}
+a:active.button3a {
+   font-color: #660066;
+}
+

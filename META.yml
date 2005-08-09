@@ -1,0 +1,16 @@
+---
+name: js-app
+version: 0.11
+author:
+  - stephen.adkins@officevision.com
+abstract: A framework for building applications in Javascript
+license: lgpl
+requires:
+  App::Options: 0
+build_requires:
+  App::Build: 0
+  File::Spec: 0
+  Module::Build: 0
+dynamic_config: 1
+provides: {}
+generated_by: Module::Build version 0.2611
