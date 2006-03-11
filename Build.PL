@@ -3,9 +3,9 @@ use App::Build;
 
 my $build = App::Build->new (
     dist_name         => "js-app",
-    dist_version      => "0.11",
-    dist_author       => "stephen.adkins\@officevision.com",
-    dist_abstract     => "A framework for building applications in Javascript",
+    dist_version      => "0.12",
+    dist_author       => "spadkins\@gmail.com",
+    dist_abstract     => "A framework for building dynamic widgets or full applications in Javascript",
     license           => "lgpl",
     requires => {
         "App::Options"   => 0,  # needed for option parsing

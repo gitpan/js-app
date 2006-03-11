@@ -194,6 +194,63 @@ function TemplateWidget () {
 }
 TemplateWidget.prototype = new Widget();
 
+// ***************************************************************************
+// CLASS: TableWidget
+// * data : [ [1,2,3],["a","b","c"] ]                - array of data for table
+// * defaultAlign : "right",                  - horizontal [right,left,center]
+// * defaultVAlign : "top",                     - vertical [top,middle,bottom]
+// * font : {
+// *   face : "MS Trebuchet,Verdana,Arial,sans-serif",
+// *   size : -1,
+// * }
+// * font : {
+// *   face : "MS Trebuchet,Verdana,Arial,sans-serif",
+// *   size : -1,
+// * }
+// * column : [ [1,2,3],["a","b","c"] ] the array of data for table
+// ***************************************************************************
+function TableWidget () {
+    this.tableHeaderHtml = tableHeaderHtml;
+    function tableHeaderHtml (cell) {
+        var html = '<div' + this.stdAttribs() + '>\n';
+        html += '<table>\n';
+        return(html);
+    }
+    this.tableFooterHtml = tableFooterHtml;
+    function tableFooterHtml (cell) {
+        var html = '</table>\n';
+        html += '</div>\n';
+        return(html);
+    }
+    this.cellHtml = cellHtml;
+    function cellHtml (cell) {
+        var html = '    <td>' + escape(cell) + '</td>\n';
+        return(html);
+    }
+    this.rowHtml = rowHtml;
+    function rowHtml (row) {
+        var c;
+        var html = '  <tr>\n';
+        for (c = 0; c < row.length; c++) {
+            html += this.cellHtml(row[c]);
+        }
+        html += '    </tr>\n';
+        return(html);
+    }
+    this.html = html;
+    function html () {
+        var html = this.tableHeaderHtml();
+        var data = this.data;
+        var r;
+        for (r = 0; r < data.length; r++) {
+            html += this.rowHtml(data[r]);
+        }
+        html += this.tableFooterHtml();
+        return(html);
+    }
+}
+TableWidget.prototype = new Widget();
+
 // *******************************************************************
 // CLASS: LabelWidget
 // *******************************************************************

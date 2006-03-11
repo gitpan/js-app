@@ -4,7 +4,17 @@ function DateWidget () {
     function init () {
         var n = this.serviceName;
         var value = context.getValue(n);
-        if (!value) {
+        if (value == null && this["default"] != null) {
+            value = this["default"];
+            context.setValue(this.serviceName, null, value);
+            
+        }
+        if (value) {
+            this.year  = value.substring(0, 4);  // YYYY
+            this.month = value.substring(5, 7);  // MM
+            this.day   = value.substring(8, 10); // DD
+        }
+        else {
             // initialize with current date
             var d = new Date();
             // initialize year
@@ -72,6 +82,7 @@ function DateWidget () {
             var month = context.getDOMValue(thisServiceName + "-month");
             var year  = context.getDOMValue(thisServiceName + "-year");
             var yearnum = Number(year);
+            var date;
             // alert("so.handleEvent(" + thisServiceName + "," + eventServiceName + "," + eventName + ")\n" +
             //     "year=" + year + " : s.year=" + s.year + "\n" +
             //     "month=" + month + " : s.month=" + s.month + "\n" +
@@ -107,8 +118,11 @@ function DateWidget () {
                 s.day   = day;
                 s.month = month;
                 s.year  = year;
-                s.setCurrentValue(year + "-" + month + "-" + day);
-                s.setCurrentValue(year + "-" + month + "-" + day);
+                date = year + "-" + month + "-" + day;
+                s.setCurrentValue(date);
+                if (s.submittable) {
+                    context.setDOMValue(thisServiceName, date);
+                }
                 DateWidget.prototype.handleEvent(s.container(thisServiceName), thisServiceName, "change");
             }
             handled = 1;

@@ -27,15 +27,22 @@ function Context () {
     this.session = new Object();
     this.cache   = new Object();
 
+    this.onLoadEvents = [];
+
     // onLoad() starts the program running.
     // If there is content in the HTML <body>, the program is
     // already "running".
-    this.onLoad            = onLoad;
+    this.onLoad = onLoad;
     function onLoad () {
-        //         document.body.innerHTML = " \
-        // <form method=GET><b>Hello</b> world<br> \
-        // <input type=submit></form> \
-        // ";
+        var e;
+        for (e = 0; e < this.onLoadEvents.length; e++) {
+            this.sendEvent(this.onLoadEvents[e]);
+        }
+    }
+
+    this.callOnLoad = callOnLoad;
+    function callOnLoad (evt) {
+        this.sendEvent.push(evt);
     }
 
     this.service = service;
@@ -138,9 +145,22 @@ function Context () {
 
     this.sendEvent = sendEvent;
     function sendEvent (serviceName, eventName, eventArgs) {
+        var serviceType, event;
+        serviceType = "SessionObject";  // make the assumption
+        if (typeof serviceName == "object") {
+            event = serviceName;
+            serviceType = event.serviceType || "SessionObject";
+            serviceName = event.serviceName;
+            eventName   = event.eventName;
+            eventArgs   = event.eventArgs;
+        }
         // alert("context.sendEvent(" + serviceName + "," + eventName + ", ...)");
-        var s = this.service("SessionObject",serviceName);
-        s.handleEvent(serviceName, serviceName, eventName, eventArgs);
+        var s = this.service(serviceType,serviceName);
+        // if (s[eventName] && typeof s[eventName] == "function") {
+        // }
+        // else {
+            s.handleEvent(serviceType, serviceName, eventName, eventArgs);
+        // }
         // return(false) causes <input onClick="..."> handlers not to continue with form submission
         return(false);
     }
@@ -578,9 +598,10 @@ function SessionObject () {
 
     this.init = init;
     function init () {
-        if (this["default"] != null) {
+        var n = this.serviceName;
+        var value = context.getValue(n);
+        if (value == null && this["default"] != null) {
             context.setValue(this.serviceName, null, this["default"]);
-            this["default"] = null;
         }
     }
 
