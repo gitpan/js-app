@@ -7,7 +7,7 @@
 
 TASKS - These items are what will be required to get to Version 1.0
  o add graphs
- o create js-app.pod (+Build.PL abstract?)
+ o add Ajax calls
  o separate app.conf from app.pl (deploy config vs. devel config)
  o init.js:AppInit() - detect if application config/css not loaded
    and determine which ones should be loaded

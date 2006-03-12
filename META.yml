@@ -1,6 +1,6 @@
 ---
 name: js-app
-version: 0.12
+version: 0.13
 author:
   - spadkins@gmail.com
 abstract: A framework for building dynamic widgets or full applications in Javascript
@@ -12,5 +12,8 @@ build_requires:
   File::Spec: 0
   Module::Build: 0
 dynamic_config: 1
-provides: {}
+provides:
+  JavaScript::App:
+    file: lib/JavaScript/App.pm
+    version: 0
 generated_by: Module::Build version 0.2611

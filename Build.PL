@@ -3,7 +3,7 @@ use App::Build;
 
 my $build = App::Build->new (
     dist_name         => "js-app",
-    dist_version      => "0.12",
+    dist_version      => "0.13",
     dist_author       => "spadkins\@gmail.com",
     dist_abstract     => "A framework for building dynamic widgets or full applications in Javascript",
     license           => "lgpl",
